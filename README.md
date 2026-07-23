@@ -1,13 +1,18 @@
-# Chorus — Technical Documentation Portal
+<p align="center">
+  <img src="assets/readme/hero.svg" alt="Chorus Technical Documentation Portal — docs.joinchorus.app" width="100%">
+</p>
 
-[![Docs CI/CD](https://github.com/joinchorus/docs/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/joinchorus/docs/actions/workflows/ci-cd.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+<p align="center">
+  <a href="https://github.com/joinchorus/docs/actions/workflows/ci-cd.yml"><img src="https://github.com/joinchorus/docs/actions/workflows/ci-cd.yml/badge.svg" alt="CI/CD Status"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License"></a>
+  <a href="https://docs.joinchorus.app"><img src="https://img.shields.io/badge/Live_Portal-docs.joinchorus.app-388bfd.svg" alt="Live Docs Portal"></a>
+</p>
 
-Official technical documentation portal, REST API reference, RFCs, and deployment guides for Chorus ([docs.joinchorus.app](https://docs.joinchorus.app)).
+<h3 align="center">Official technical documentation portal, REST API reference, and architecture RFCs.</h3>
 
 ---
 
-## 🔗 Navigation
+## 🔗 Ecosystem Links
 
 - 🌐 **Marketing Website:** [joinchorus.app](https://joinchorus.app)
 - 💬 **Launch Application:** [chat.joinchorus.app](https://chat.joinchorus.app)
@@ -17,10 +22,10 @@ Official technical documentation portal, REST API reference, RFCs, and deploymen
 
 ## 📚 What's Inside
 
-- **13 REST API Endpoint Specifications:** Purpose, HTTP Method, Route, Request/Response payloads, curls, and status codes.
-- **8-Layer SVG Architecture Diagram:** End-to-end component decomposition.
+- **13 REST API Endpoint Specifications:** Purpose, HTTP Method, Route, Path/Query parameters, Request/Response payloads, curls, and status codes.
+- **8-Layer SVG Architecture Diagram:** End-to-end system decomposition.
 - **9-Stage Request Lifecycle SVG Diagram:** Step-by-step request execution flow.
-- **RFC Documents (`/rfcs`):** Architectural RFCs including `RFC-001-git-persistence.md`.
+- **RFC Documents (`/rfcs`):** Architectural specifications including `RFC-001-git-persistence.md`.
 - **Command Palette Search:** Support for `/` and `Cmd/Ctrl+K` instant filtering.
 
 ---

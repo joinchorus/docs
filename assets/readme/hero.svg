@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="100%" height="auto">
+  <defs>
+    <style>
+      .bg { fill: #0b0f19; }
+      .border { fill: none; stroke: #1d283a; stroke-width: 2; }
+      .card-bg { fill: #131c2e; stroke: #25354e; stroke-width: 1.5; }
+      .text-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 800; font-size: 46px; fill: #f0f6fc; letter-spacing: -0.04em; }
+      .text-tagline { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 20px; fill: #8b949e; }
+      .badge-bg { fill: #388bfd; fill-opacity: 0.15; stroke: #58a6ff; stroke-width: 1.5; }
+      .badge-text { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 13px; font-weight: 700; fill: #58a6ff; letter-spacing: 0.05em; }
+      .api-method { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 12px; font-weight: 800; fill: #3fb950; }
+      .api-path { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 13px; fill: #e6edf3; }
+      .api-badge { fill: rgba(63,185,80,0.15); stroke: rgba(63,185,80,0.4); stroke-width: 1; }
+    </style>
+  </defs>
+
+  <!-- Outer Background -->
+  <rect class="bg" width="1200" height="420" rx="16" />
+  <rect class="border" x="1" y="1" width="1198" height="418" rx="15" />
+
+  <!-- Content Container -->
+  <g transform="translate(60, 60)">
+    <!-- Top Badge -->
+    <rect class="badge-bg" x="0" y="0" width="240" height="32" rx="16" />
+    <text class="badge-text" x="120" y="21" text-anchor="middle">TECHNICAL DOCS PORTAL</text>
+
+    <!-- Main Title -->
+    <text class="text-title" x="0" y="95">docs.joinchorus.app</text>
+
+    <!-- Subtitle -->
+    <text class="text-tagline" x="0" y="135">13 REST API endpoints, 8-layer architecture &amp; RFCs.</text>
+
+    <!-- Right-Side Visual Card: API Reference Card -->
+    <g transform="translate(600, 0)">
+      <rect class="card-bg" x="0" y="0" width="480" height="280" rx="12" />
+      
+      <!-- Card Header -->
+      <path d="M0 12C0 5.37 5.37 0 12 0H468C474.63 0 480 5.37 480 12V40H0V12Z" fill="#1b273d" />
+      <circle cx="20" cy="20" r="6" fill="#ff5f56" />
+      <circle cx="40" cy="20" r="6" fill="#ffbd2e" />
+      <circle cx="60" cy="20" r="6" fill="#27c93f" />
+      <text font-family="ui-monospace, SFMono-Regular, monospace" font-size="12" fill="#8b949e" x="80" y="24">api-reference.v0.1.json</text>
+
+      <!-- Endpoint Items -->
+      <g transform="translate(24, 65)">
+        <!-- Endpoint 1 -->
+        <rect class="api-badge" x="0" y="0" width="55" height="24" rx="4" />
+        <text class="api-method" x="27" y="16" text-anchor="middle">GET</text>
+        <text class="api-path" x="70" y="16">/api/v0.1/threads</text>
+        <text font-family="sans-serif" font-size="11" fill="#8b949e" x="350" y="16">List threads</text>
+
+        <!-- Endpoint 2 -->
+        <g transform="translate(0, 45)">
+          <rect class="api-badge" fill="rgba(88,166,255,0.15)" stroke="rgba(88,166,255,0.4)" stroke-width="1" x="0" y="0" width="55" height="24" rx="4" />
+          <text class="api-method" fill="#58a6ff" x="27" y="16" text-anchor="middle">POST</text>
+          <text class="api-path" x="70" y="16">/api/v0.1/threads</text>
+          <text font-family="sans-serif" font-size="11" fill="#8b949e" x="350" y="16">Create thread</text>
+        </g>
+
+        <!-- Endpoint 3 -->
+        <g transform="translate(0, 90)">
+          <rect class="api-badge" fill="rgba(88,166,255,0.15)" stroke="rgba(88,166,255,0.4)" stroke-width="1" x="0" y="0" width="55" height="24" rx="4" />
+          <text class="api-method" fill="#58a6ff" x="27" y="16" text-anchor="middle">POST</text>
+          <text class="api-path" x="70" y="16">/api/v0.1/threads/{id}/messages</text>
+          <text font-family="sans-serif" font-size="11" fill="#8b949e" x="350" y="16">Post reply</text>
+        </g>
+
+        <!-- Endpoint 4 -->
+        <g transform="translate(0, 135)">
+          <rect class="api-badge" x="0" y="0" width="55" height="24" rx="4" />
+          <text class="api-method" x="27" y="16" text-anchor="middle">GET</text>
+          <text class="api-path" x="70" y="16">/api/v0.1/moderation/reports</text>
+          <text font-family="sans-serif" font-size="11" fill="#8b949e" x="350" y="16">Mod queue</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
