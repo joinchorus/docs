@@ -2,7 +2,7 @@
 
 - **Status:** Approved / Implemented (`v0.1.0-alpha`)
 - **Author:** Senior Software Architect
-- **Target Repository:** [chorus-project/chorus](https://github.com/chorus-project/chorus)
+- **Target Repository:** [joinchorus/chorus](https://github.com/joinchorus/chorus)
 - **Domain:** `chat.joinchorus.app`
 
 ---

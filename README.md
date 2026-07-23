@@ -1,6 +1,6 @@
 # Chorus — Technical Documentation Portal
 
-[![Docs CI/CD](https://github.com/chorus-project/docs/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/chorus-project/docs/actions/workflows/ci-cd.yml)
+[![Docs CI/CD](https://github.com/joinchorus/docs/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/joinchorus/docs/actions/workflows/ci-cd.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Official technical documentation portal, REST API reference, RFCs, and deployment guides for Chorus ([docs.joinchorus.app](https://docs.joinchorus.app)).
@@ -11,7 +11,7 @@ Official technical documentation portal, REST API reference, RFCs, and deploymen
 
 - 🌐 **Marketing Website:** [joinchorus.app](https://joinchorus.app)
 - 💬 **Launch Application:** [chat.joinchorus.app](https://chat.joinchorus.app)
-- 💻 **Application Repository:** [chorus-project/chorus](https://github.com/chorus-project/chorus)
+- 💻 **Application Repository:** [joinchorus/chorus](https://github.com/joinchorus/chorus)
 
 ---
 
@@ -29,7 +29,7 @@ Official technical documentation portal, REST API reference, RFCs, and deploymen
 
 ```bash
 # Clone the repository
-git clone https://github.com/chorus-project/docs.git
+git clone https://github.com/joinchorus/docs.git
 cd docs
 
 # Serve locally
