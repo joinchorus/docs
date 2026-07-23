@@ -1,0 +1,43 @@
+name: Documentation Firebase Hosting CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_and_verify:
+    name: Build & Verify Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify Documentation & OpenAPI Specs
+        run: |
+          npm run build
+          test -f public/index.html
+          test -f public/openapi.yaml
+
+  deploy_firebase_hosting:
+    name: Deploy to Firebase Hosting (docs.joinchorus.app)
+    needs: build_and_verify
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CHORUS_DOCS }}'
+          channelId: live
+          projectId: chorus-docs

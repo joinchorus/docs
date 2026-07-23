@@ -1,0 +1,10 @@
+{
+  "name": "chorus-docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chorus Technical Documentation Portal — docs.joinchorus.app",
+  "scripts": {
+    "build": "echo 'Build complete (static documentation assets)'",
+    "serve": "npx serve public"
+  }
+}
