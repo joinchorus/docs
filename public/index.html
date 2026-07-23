@@ -317,6 +317,14 @@
         text-overflow: ellipsis;
       }
 
+      .search-input::placeholder,
+      .search-input::-webkit-input-placeholder,
+      .search-input::-moz-placeholder,
+      .search-input:-ms-input-placeholder {
+        color: transparent !important;
+        opacity: 0 !important;
+      }
+
       .search-kbd-shortcut {
         display: none;
       }
@@ -2068,6 +2076,20 @@ docker run -d -p 8085:8085 -v chorus-data:/app/data chorus:latest</code></pre>
         closeSearchModal();
       }
     });
+
+    // Mobile Search Placeholder Fix
+    function updateSearchPlaceholder() {
+      const searchInput = document.querySelector('.search-input');
+      if (searchInput) {
+        if (window.innerWidth <= 768) {
+          searchInput.setAttribute('placeholder', '');
+        } else {
+          searchInput.setAttribute('placeholder', 'Search docs (Press / or Ctrl+K)');
+        }
+      }
+    }
+    updateSearchPlaceholder();
+    window.addEventListener('resize', updateSearchPlaceholder);
 
     searchModal.addEventListener('click', (e) => {
       if (e.target === searchModal) closeSearchModal();
