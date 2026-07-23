@@ -107,6 +107,42 @@
       .mobile-menu-btn { display: flex; }
     }
 
+    .mobile-header-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border-default);
+      color: var(--text-primary);
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-header-toggle {
+        display: inline-flex;
+      }
+
+      .header-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-surface);
+        border-bottom: 1px solid var(--border-default);
+        padding: 1.25rem 1.5rem;
+        gap: 1rem;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      }
+
+      .header-links.active {
+        display: flex;
+      }
+    }
+
     /* Version Selector & Stage Badges */
     .version-selector {
       position: relative;
@@ -1052,7 +1088,15 @@
         </div>
       </div>
 
-      <nav class="header-links">
+      <button id="mobile-header-toggle" class="mobile-header-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+
+      <nav class="header-links" id="header-links">
         <a href="https://joinchorus.app" target="_blank">Website</a>
         <a href="https://chat.joinchorus.app" target="_blank">Launch App</a>
         <a href="https://github.com/joinchorus/chorus" target="_blank">GitHub Repository</a>
@@ -2026,6 +2070,23 @@ docker run -d -p 8085:8085 -v chorus-data:/app/data chorus:latest</code></pre>
       document.addEventListener('click', function(e) {
         if (!sidebarDrawer.contains(e.target) && e.target !== mobileDrawerBtn) {
           sidebarDrawer.classList.remove('open');
+        }
+      });
+    }
+
+    // Header Mobile Menu Toggle
+    const headerToggle = document.getElementById('mobile-header-toggle');
+    const headerLinks = document.getElementById('header-links');
+    if (headerToggle && headerLinks) {
+      headerToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        headerLinks.classList.toggle('active');
+        const isOpen = headerLinks.classList.contains('active');
+        headerToggle.setAttribute('aria-expanded', isOpen);
+      });
+      document.addEventListener('click', function(e) {
+        if (!headerLinks.contains(e.target) && e.target !== headerToggle) {
+          headerLinks.classList.remove('active');
         }
       });
     }
