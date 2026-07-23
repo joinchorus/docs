@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "chorus-docs",
     "public": "public",
     "ignore": [
       "firebase.json",

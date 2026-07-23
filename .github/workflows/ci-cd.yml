@@ -52,4 +52,5 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CHORUS_DOCS }}'
           channelId: live
-          projectId: chorus-docs
+          projectId: chorus-chat-app
+          target: chorus-docs
