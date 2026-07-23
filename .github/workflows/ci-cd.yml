@@ -8,7 +8,7 @@ on:
 
 jobs:
   build_and_verify:
-    name: Build & Verify Documentation
+    name: Build & Verify Technical Docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -19,16 +19,15 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Verify Documentation & OpenAPI Specs
+      - name: Verify Documentation Assets
         run: |
           npm run build
           test -f public/index.html
-          test -f public/openapi.yaml
 
   deploy_firebase_hosting:
     name: Deploy to Firebase Hosting (docs.joinchorus.app)
     needs: build_and_verify
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push' && secrets.FIREBASE_SERVICE_ACCOUNT_CHORUS_DOCS != ''
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
