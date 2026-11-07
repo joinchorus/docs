@@ -1,74 +1,39 @@
-# Contributing to Chorus
+# Contributing to the Chorus docs
 
-Thank you for your interest in contributing to **Chorus**! We welcome contributions from developers of all skill levels.
+This repository is the source of [docs.joinchorus.app](https://docs.joinchorus.app): the REST API reference, architecture diagrams and RFCs for [Chorus](https://github.com/joinchorus/chorus). Changes to the application itself belong in [joinchorus/chorus](https://github.com/joinchorus/chorus) and follow the [organization contributing guide](https://github.com/joinchorus/.github/blob/main/CONTRIBUTING.md).
 
-Full technical documentation and developer guides are available at [docs.joinchorus.app](https://docs.joinchorus.app/contributing).
+## Run it locally
 
----
-
-## Getting Started
-
-### Prerequisites
-- **Go**: 1.22 or higher
-- **Node.js**: 20 or higher
-- **Git**: 2.30 or higher
-
-### Local Development Setup
-
-1. **Fork and clone the repository**:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/Chorus.git
-   cd Chorus
-   ```
-
-2. **Run the Go backend server**:
-   ```bash
-   go run ./cmd/server
-   ```
-
-3. **Run the React frontend**:
-   ```bash
-   cd web
-   npm install
-   npm run dev
-   ```
-
----
-
-## Architectural Guidelines
-
-When writing code for Chorus, please keep these core principles in mind:
-
-- **Keep Go Idiomatic & Pragmatic**: Avoid overengineering or adding enterprise abstractions for simple features.
-- **Single Source of Truth (SSOT)**: Domain models (`internal/domain`, `internal/thread/model.go`) hold JSON tags. Do not create duplicate dto/mapper layers unless there is a concrete reason.
-- **Concrete Types & Consumer Interfaces**: Return concrete struct pointers from constructors. Move interfaces to consumer packages.
-- **Backend as Single Source of Truth**: The frontend must never generate IDs, timestamps, or country determinations. The backend creates all system values.
-- **Frontend Design Aesthetics**: Keep the React UI minimal, calm, and readable (light mode, system typography, monospace IDs). Avoid modern SaaS clichés (gradients, floating cards, glowing effects).
-
----
-
-## Development Workflow & Testing
-
-Before submitting a Pull Request, verify that all tests pass:
+The portal is static HTML; there is no build step.
 
 ```bash
-# 1. Run backend tests with race detection
-go test -v -race ./...
-
-# 2. Run Go vet
-go vet ./...
-
-# 3. Verify frontend build
-cd web && npm run build
+git clone https://github.com/YOUR_USERNAME/docs.git
+cd docs
+npm run serve        # npx serve public, prints the local address (default http://localhost:3000)
 ```
 
----
+Requirements: Node.js 22 or newer (only for `npx serve`).
 
-## Submitting Pull Requests
+## Where things live
 
-1. Create a feature branch: `git checkout -b feature/my-feature-name`.
-2. Keep your commits clean and focused.
-3. Push to your fork and submit a Pull Request to the `main` branch.
-4. Provide a clear summary in your PR description explaining the motivation and changes made.
+| Path | Content |
+| :--- | :--- |
+| `public/index.html` | The portal: API reference, diagrams, search |
+| `public/openapi.yaml` | OpenAPI description (covers fewer paths than the portal page) |
+| `rfcs/` | Architecture RFCs, e.g. `RFC-001-git-persistence.md` |
+| `*.md` | Event architecture, performance, deployment, release notes |
 
-Thank you for helping build a calmer internet!
+## Keep the reference accurate
+
+- The API is defined by [`internal/http/router.go`](https://github.com/joinchorus/chorus/blob/main/internal/http/router.go) in the app repo. When you document or change an endpoint, check its method, path, request and response against the code.
+- Describe what exists today. Mark planned behaviour as planned.
+- New architectural proposals go in `rfcs/` as `RFC-NNN-short-title.md` and are discussed in the pull request.
+
+## Pull requests
+
+1. Branch from `main` (`docs/...`, `fix/...`).
+2. Use [Conventional Commits](https://www.conventionalcommits.org/) (`docs: document report endpoint`).
+3. Open a pull request using the template. CI checks that `public/index.html` is present; a maintainer review is required.
+4. **Merging to `main` deploys to docs.joinchorus.app**, so preview your change locally before asking for review.
+
+Security issues: please do not open a public issue. Use [private vulnerability reporting](https://github.com/joinchorus/docs/security/advisories/new) or see [SECURITY.md](SECURITY.md).
