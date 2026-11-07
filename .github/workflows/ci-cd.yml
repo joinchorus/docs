@@ -6,16 +6,27 @@ on:
   pull_request:
     branches: [ main ]
 
+# Matches the repository default (read-only token); stated explicitly.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
+  # The job name is a required status check in the branch ruleset.
   build_and_verify:
     name: Build & Verify Technical Docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '22'
 
@@ -31,7 +42,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
 
       - name: Check Firebase Secret
         id: check_secret
@@ -39,15 +52,15 @@ jobs:
           SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CHORUS_DOCS }}
         run: |
           if [ -z "$SERVICE_ACCOUNT" ]; then
-            echo "SECRET_EXISTS=false" >> $GITHUB_ENV
+            echo "SECRET_EXISTS=false" >> "$GITHUB_ENV"
             echo "::warning ::FIREBASE_SERVICE_ACCOUNT_CHORUS_DOCS secret is missing in GitHub repository secrets. Deployment skipped."
           else
-            echo "SECRET_EXISTS=true" >> $GITHUB_ENV
+            echo "SECRET_EXISTS=true" >> "$GITHUB_ENV"
           fi
 
       - name: Deploy to Firebase Hosting
         if: env.SECRET_EXISTS == 'true'
-        uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: FirebaseExtended/action-hosting-deploy@500ac625ca2dd40cbd15f7659af953801858032a # v0.11.0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CHORUS_DOCS }}'
